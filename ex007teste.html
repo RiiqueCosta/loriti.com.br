@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LORI-TI | Soluções em TI</title>
+    <style>
+        /* -------- Reset / básicos -------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+          
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2; /* cinza claro */
+            color: #121212; /* preto */
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* -------- Cabeçalho -------- */
+        header {
+            background: linear-gradient(135deg, #121212, #1e1e1e, #333333);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .header-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #FF6600; /* destaque laranja */
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FF6600; /* hover laranja */
+        }
+
+        /* -------- Seções principais -------- */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 100px 20px 40px; /* topo considera header fixo */
+        }
+        section {
+            margin-bottom: 60px;
+        }
+        section h2 {
+            color: #121212; /* preto */
+            margin-bottom: 20px;
+            font-size: 2rem;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: #FF6600; /* laranja */
+            left: 0;
+            bottom: -8px;
+            border-radius: 2px;
+        }
+
+        .sobre {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        /* -------- Serviços -------- */
+        .servicos {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .servico-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .servico {
+            background-color: #f2f2f2; /* cinza claro */
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: default;
+        }
+        .servico:hover {
+            transform: translateY(-5px);
+            background-color: #e6e6e6;
+        }
+        .servico h3 {
+            margin-bottom: 10px;
+            color: #FF6600; /* laranja */
+        }
+
+        /* -------- Portfólio / Trabalhos Feitos -------- */
+        .portfolio {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .portfolio-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .portfolio-item img {
+            transition: transform 0.5s;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: opacity 0.5s;
+            text-align: center;
+            padding: 10px;
+        }
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* -------- Contato -------- */
+        .contato {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .contato form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contato input, .contato textarea {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .contato input:focus, .contato textarea:focus {
+            border-color: #FF6600;
+            box-shadow: 0 0 5px rgba(255,102,0,0.4);
+        }
+        .contato button {
+            padding: 12px;
+            background-color: #FF6600; /* laranja */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .contato button:hover {
+            background-color: #ff8533; /* laranja mais claro */
+            color: #000;
+        }
+
+        /* -------- Rodapé -------- */
+        footer {
+            background-color: #121212; /* preto */
+            color: #f2f2f2; /* cinza claro */
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* -------- Botão WhatsApp flutuante -------- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FF6600; /* laranja */
+            color: white;
+            font-size: 1.2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .whatsapp-float a:hover {
+            transform: scale(1.1);
+            background-color: #ff8533; /* laranja mais claro */
+        }
+
+        /* -------- Animações -------- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                
+                <h1>LORI-TI</h1>
+            </div>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sobre -->
+        <section id="sobre" class="sobre">
+            <h2>Sobre a LORI-TI</h2>
+            <p>
+                A <strong>LORI-TI</strong> é uma empresa especializada em tecnologia da informação,
+                com foco em manutenção de câmeras (CFTV), suporte em hardware, instalações de redes
+                e serviços em geral. Atuamos com agilidade, transparência e compromisso com a qualidade.
+            </p>
+        </section>
+
+        <!-- Serviços -->
+        <section id="servicos" class="servicos">
+            <h2>Nossos Serviços</h2>
+            <div class="servico-lista">
+                <div class="servico">
+                    <h3>Manutenção de Câmeras</h3>
+                    <p>Instalação, configuração, posicionamento e monitoramento de sistemas de câmeras de segurança.</p>
+                </div>
+                <div class="servico">
+                    <h3>Suporte em Hardware</h3>
+                    <p>Reparo de PCs, notebooks, upgrade de componentes e manutenção preventiva.</p>
+                </div>
+                <div class="servico">
+                    <h3>Redes & Infraestrutura</h3>
+                    <p>Cabeamento, instalação de pontos de rede, organização de racks e otimização da infraestrutura.</p>
+                </div>
+                <div class="servico">
+                    <h3>Instalações Gerais</h3>
+                    <p>Montagem e instalação de equipamentos eletrônicos, monitores, impressoras, dispositivos de automação, etc.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfólio -->
+        <section id="portfolio" class="portfolio">
+            <h2>Trabalhos Recentes</h2>
+            <div class="portfolio-lista">
+                <div class="portfolio-item">
+                    <img src="cameras.jpg" alt="Instalação de câmeras " loading="lazy">
+                    <div class="overlay">Projeto de instalação de câmeras em residência</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="servidor.jpg" alt="Organização de servidor e cabeamento" loading="lazy">
+                    <div class="overlay">Organização de servidor e cabeamento estruturado</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="hardware.jpg" alt="Upgrade e manutenção de hardware em escritório" loading="lazy">
+                    <div class="overlay">Upgrade e manutenção de hardware em escritório</div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="redeinterna.jpg" alt="Instalação de rede interna em prédio comercial" loading="lazy">
+                    <div class="overlay">Instalação de rede interna em prédio comercial</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section id="contato" class="contato">
+            <h2>Fale Conosco</h2>
+            <form action="#" method="post">
+                <input type="text" name="nome" placeholder="Seu nome" required>
+                <input type="email" name="email" placeholder="Seu e-mail" required>
+                <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        &copy; 2025 LORI-TI. Todos os direitos reservados. | Soluções em TI
+    </footer>
+
+    <!-- Botão do WhatsApp flutuante -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5511985258655?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20LORI-TI." target="_blank" aria-label="WhatsApp LORI-TI">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+                <path d="M20.52 3.48a11.77 11.77 0 0 0-16.65 0 11.78 11.78 0 0 0-3.47 8.34c0 6.53 5.29 12.16 11.69 12.16a11.6 11.6 0 0 0 8.34-3.47l3.17 3.17 1.41-1.41-3.17-3.17a11.78 11.78 0 0 0 3.47-8.34 11.77 11.77 0 0 0-3.47-8.34zM12 21.94c-5.31 0-9.95-4.12-9.95-9.6 0-5.36 4.28-9.56 9.55-9.56 5.25 0 9.55 4.2 9.55 9.56 0 5.48-4.64 9.6-9.55 9.6z"/>
+                <path d="M17.27 14.87c-.25-.12-1.48-.73-1.71-.82-.23-.09-.4-.12-.57.12s-.65.82-.8.99c-.15.16-.3.18-.55.07-.25-.12-1.07-.39-2.04-1.24-.75-.66-1.25-1.48-1.4-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.15.16-.25.25-.42.09-.16.05-.31-.02-.43-.07-.12-.57-1.38-.78-1.9-.2-.5-.41-.43-.57-.44-.15-.01-.33-.02-.51-.02-.17 0-.44.06-.67.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.34.99 2.5.12.17 1.72 2.62 4.18 3.68.58.25 1.03.4 1.38.51.58.21 1.11.18 1.53.11.47-.08 1.48-.6 1.69-1.19.2-.6.2-1.12.14-1.19-.06-.07-.54-.09-.99-.21z"/>
+            </svg>
+        </a>
+    </div>
+</body>
+</html>
