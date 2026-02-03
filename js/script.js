@@ -1,22 +1,15 @@
-// Adicionar destaque ao link do menu ativo ao rolar a página
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
 
-window.addEventListener("scroll", () => {
-    let current = "";
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('active');
+  menuToggle.classList.toggle('open');
+});
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            current = section.getAttribute("id");
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
-            link.classList.add("active");
-        }
-    });
+// Fecha menu ao clicar em um link
+document.querySelectorAll('.menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    menu.classList.remove('active');
+    menuToggle.classList.remove('open');
+  });
 });

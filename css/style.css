@@ -241,3 +241,112 @@ footer {
         right: 20px;
     }
 }
+/* ===== AJUSTE MOBILE - TOPO MUITO GRANDE ===== */
+@media (max-width: 768px) {
+
+  header {
+    padding: 10px 15px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  /* HERO / TOPO */
+  #home {
+    padding: 30px 15px;
+  }
+
+  #home h2 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  #home p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+}
+/* ===============================
+   MENU SLIDE LATERAL – PREMIUM
+================================ */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* MENU DESKTOP */
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* MENU OFF-CANVAS */
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -260px; /* ESCONDIDO */
+    width: 260px;
+    height: 100vh;
+    background-color: #0f0f0f;
+    flex-direction: column;
+    padding-top: 80px;
+    gap: 0;
+    transition: right 0.35s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+
+  /* MENU ABERTO */
+  .menu.active {
+    right: 0;
+  }
+
+  .menu a {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .menu a:hover {
+    background-color: #FF6600;
+    color: #000;
+  }
+
+  /* Corrige topo grande */
+  .container {
+    padding-top: 80px;
+  }
+}
+
+/* ANIMAÇÃO DO BOTÃO ☰ → X */
+.menu-toggle.open {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
